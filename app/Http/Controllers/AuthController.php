@@ -8,6 +8,7 @@ use Validator;
 use Hash;
 use Session;
 use DB;
+use Storage;
 
 class AuthController extends Controller
 {
@@ -74,15 +75,16 @@ class AuthController extends Controller
             return redirect()->back();
         }
         $image = $request->file('pfp');
-        $imageName = rand(1,999).'-'.time() . '.' . $image->getClientOriginalExtension();
+        // $imageName = rand(1,999).'-'.time() . '.' . $image->getClientOriginalExtension();
         // $imageName = rand(1,999).'-'.time().'.'.$request->image->extension();
-        $destination = public_path('/images');
-        $image->move($destination, $imageName);
-        $baseurl = url('/');
-        $path = $baseurl . "/images/" . $imageName;
+        // $destination = public_path('/images');
+        $path = Storage::disk('s3')->put('images', $request->file('pfp'));
+        $url = Storage::disk('s3')->url($path);
+
+        
 
         DB::table('admin')->where('id', session()->get('adminId'))->update([
-            "profile_pic" => $path
+            "profile_pic" => $url
         ]);
 
   
