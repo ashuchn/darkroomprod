@@ -8,7 +8,8 @@
         <meta content="Darkroom Production: #1 Company" name="description" />
         <meta content="Darkroom Production" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{{ url('assets/dashboard-nazox/assets/images/favicon.ico') }}">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
         <!-- Bootstrap Css -->
         <link href="{{ url('assets/dashboard-nazox/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
