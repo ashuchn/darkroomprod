@@ -20,6 +20,12 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('admin.login');
-    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('loginPost', [AuthController::class, 'loginPost'])->name('admin.loginPost');
+
+    Route::middleware(['checkAdminLogin','prevent-back-history'])->group(function(){
+        Route::get('dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
+    });
+
 
 });

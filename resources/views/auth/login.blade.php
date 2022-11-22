@@ -39,27 +39,47 @@
     
                                                 <h4 class="font-size-18 mt-4">Welcome Back !</h4>
                                                 <p class="text-muted">Sign in to continue to Darkroom Production.</p>
+
                                             </div>
+                                            @if(session()->has('err_msg'))
+                                                <div class="alert alert-danger">
+                                                <p><strong>Oops Something went wrong</strong></p>
+                                                    {{ session()->get('err_msg') }}
+                                                </div>
+                                            @endif
+                                            @php
+                                                session()->forget('err_msg')
+                                            @endphp
+                                            @if($errors->any())
+                                            <div class="alert alert-danger">
+                                                        <p><strong>Opps Something went wrong</strong></p>
+                                                        <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
 
                                             <div class="p-2 mt-5">
-                                                <form class="" action="" method="post">
-                    
+                                                <form class="" action="{{ route('admin.loginPost') }}" method="post">
+                                                        @csrf
                                                     <div class="mb-3 auth-form-group-custom mb-4">
                                                         <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                         <label for="email">Email</label>
-                                                        <input type="text" class="form-control" id="email" placeholder="Enter email">
+                                                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
                                                     </div>
                             
                                                     <div class="mb-3 auth-form-group-custom mb-4">
                                                         <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <label for="userpassword">Password</label>
-                                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                                        <input type="password" class="form-control" name="password" id="userpassword" placeholder="Enter password">
                                                     </div>
                             
-                                                    <div class="form-check">
+                                                    <!-- <div class="form-check">
                                                         <input type="checkbox" class="form-check-input" id="customControlInline">
                                                         <label class="form-check-label" for="customControlInline">Remember me</label>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="mt-4 text-center">
                                                         <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
