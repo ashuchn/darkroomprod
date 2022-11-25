@@ -13,12 +13,13 @@
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ url('assets/dashboard-nazox/assets/images/favicon.ico') }}">
-
+        
         <!-- jquery.vectormap css -->
+        <link href="{{ url('assets/dashboard-nazox/assets/libs/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('assets/dashboard-nazox/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- DataTables -->
-        <link href="{{ url('assets/dashboard-nazox/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/dashboard-nazox/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- Responsive datatable examples -->
         <link href="{{ url('assets/dashboard-nazox/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />  

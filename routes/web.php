@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PhotosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::prefix('admin')->group(function () {
         Route::post('changePfp', [AuthController::class, 'changePfp'])->name('admin.changePfp');
         Route::post('changePassword', [AuthController::class, 'changePassword'])->name('admin.changePassword');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+        Route::prefix('photos')->group(function () {
+            Route::get('allPhotos',[PhotosController::class, 'allPhotos'])->name('admin.photos.allPhotos');
+            Route::get('singleUpload',[PhotosController::class, 'singleUpload'])->name('admin.photos.singleUpload');
+            Route::post('singleUploadPost',[PhotosController::class, 'singleUploadPost'])->name('admin.photos.singleUploadPost');
+        });
+
     });
 
 

@@ -40,7 +40,15 @@
         <script src="{{ url('assets/dashboard-nazox/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
         <script src="{{ url('assets/dashboard-nazox/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
 
-        //<script src="{{ url('assets/dashboard-nazox/assets/js/pages/dashboard.init.js') }}"></script>
+        {{-- <script src="{{ url('assets/dashboard-nazox/assets/js/pages/dashboard.init.js') }}"></script> --}}
 
         <!-- App js -->
-        <script src="{{ url('assets/dashboard-nazox/assets/js/app.js') }}"></script>
+        <script src="{{ url('assets/dashboard-nazox/assets/dashboard-nazox/assets/js/app.js') }}"></script>
+        <script src="{{ url('assets/dashboard-nazox/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+        <script src="{{ url('assets/dropzone-scripts.js') }}"></script>
+
+        <!-- Magnific Popup-->
+        <script src="{{ url('assets/dashboard-nazox/assets/libs/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+
+        <!-- lightbox init js-->
+        <script src="{{ url('assets/dashboard-nazox/assets/js/pages/lightbox.init.js') }}"></script>
