@@ -60,9 +60,8 @@
                                 </div>
                             </div>
                         <div class="card-body">
-
                             <div class="row mb-3">
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Name</label>
+                                <label for="example-text-input" autocomplete="off" class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" value="{{ $data->name }}"
                                         id="example-text-input" disabled>
@@ -93,35 +92,51 @@
                     <!-- Simple card -->
                     <div class="card">
 
-                        <div class="card-title">
+                        <div class="card-title mt-2 mx-1">
                             
-
+                            <h4>Change Password</h4>
 
                         </div>
 
                         <div class="card-body">
-
-                            <div class="row mb-3">
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Name</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" type="text" value="{{ $data->name }}"
-                                        id="example-text-input" disabled>
+                            @if(session()->has('error'))
+                                <div class="alert alert-danger alert-dismissible">
+                                    session()->get('error');
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" type="email" value="{{ $data->email }}"
-                                        id="example-text-input" disabled>
+                            @endif
+                            <form action="{{ route('admin.changePassword') }}" method="post" autocomplete="off">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-5 col-form-label">Current Password</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control @error('current_password') is-invalid @enderror" name="current_password" required type="password" placeholder="********" id="example-text-input">
+                                        @error('current_password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Last Login at</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" type="text" value="{{ $data->last_login_at }}"
-                                        id="example-text-input" disabled>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-5 col-form-label">New Password</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" placeholder="********" id="example-text-input" required>
+                                        @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-5 col-form-label">Re-enter new Password</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" type="password" placeholder="********" id="example-text-input" required>
+                                        @error('password_confirmation')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                        <input type="submit" value="Change" class=" col-sm-12 btn btn-primary">
+                                </div>
+                            </form>
 
                             <!-- <a href="#" class="btn btn-primary waves-effect waves-light">Button</a> -->
                         </div>

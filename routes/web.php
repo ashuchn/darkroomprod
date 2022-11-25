@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('profile', [AuthController::class, 'profile'])->name('admin.profile');
         Route::post('changePfp', [AuthController::class, 'changePfp'])->name('admin.changePfp');
+        Route::post('changePassword', [AuthController::class, 'changePassword'])->name('admin.changePassword');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
     });
 

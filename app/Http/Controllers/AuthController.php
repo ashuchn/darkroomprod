@@ -70,14 +70,10 @@ class AuthController extends Controller
         ]);
 
         if($validator->fails()) {
-            // return back()->withErrors($validator);
             toastr()->error($validator->errors()->first(), 'Oops!');
             return redirect()->back();
         }
         $image = $request->file('pfp');
-        // $imageName = rand(1,999).'-'.time() . '.' . $image->getClientOriginalExtension();
-        // $imageName = rand(1,999).'-'.time().'.'.$request->image->extension();
-        // $destination = public_path('/images');
         $path = Storage::disk('s3')->put('images', $request->file('pfp'));
         $url = Storage::disk('s3')->url($path);
 
@@ -90,6 +86,35 @@ class AuthController extends Controller
   
         toastr()->error('Profile Pic Changed', 'Ok!');
         return redirect()->route('admin.profile'); 
+
+    }
+
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            "current_password" => 'required',
+            "password" => "required|min:5|required_with:password_confirmation",
+            "password_confirmation" => "required|min:5|same:password"
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $currentPassword = Admin::where('id', session('adminId'))->pluck('password'); 
+        
+        if (Hash::check($request->password, $currentPassword[0])) {
+            return back()->with('error','Current Password and New Password should be different');
+        } else {
+            DB::table('admin')->where('id', session()->get('adminId'))
+            ->update([
+                "password" => Hash::make($request->password)
+            ]);
+            return back()->with('success','Password Changed');
+        }
+
+
+
 
     }
 
