@@ -38,14 +38,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Zoom Gallery</h4>
-                            <p class="card-title-desc">Zoom effect works only with images.</p>
-
-                            {{-- <div class="zoom-gallery">
-                                @foreach ($data as $rows)
-                                    <a class="float-start mx-2 mt-2 mb-2" href="{{ $rows->image_path }}" title="Image"><img src="{{ $rows->image_path }}" loading="lazy"  alt="Image" width="275" height="300"></a>
-                                @endforeach
-                            </div> --}}
+                            <h4 class="card-title">Photos</h4>
                             <div class="popup-gallery">
                                 @foreach ($data as $rows)
                                     <a class="float-start  mx-2 mt-2 mb-2" href="{{ $rows->image_path }}" title="Image">
