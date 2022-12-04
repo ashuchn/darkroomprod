@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PhotosController;
+use App\Http\Controllers\SmsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,12 @@ use App\Http\Controllers\PhotosController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('sms')->group(function () {
+    Route::get('/', [SmsController::class, 'index'])->name('sms.index');
+    Route::post('/send', [SmsController::class, 'sendSms'])->name('sms.send');
+});
+
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('admin.login');
